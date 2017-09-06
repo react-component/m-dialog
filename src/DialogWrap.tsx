@@ -23,10 +23,6 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
     this.renderDialog(false);
   }
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps.visible !== this.props.visible;
-  }
-
   componentDidUpdate() {
     this.renderDialog(this.props.visible);
   }
