@@ -19,16 +19,26 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
     }
   }
 
+  componentWillUnmount() {
+    this.renderDialog(false);
+  }
+
   shouldComponentUpdate(nextProps) {
     return nextProps.visible !== this.props.visible;
   }
 
   componentDidUpdate() {
-    this.renderDialog();
+    this.renderDialog(this.props.visible);
   }
 
-  getComponent() {
-    return <Dialog {...this.props} onAnimateLeave={this.removeContainer}  />;
+  getComponent(visible) {
+    const props = {...this.props};
+    ['visible', 'onAnimateLeave'].forEach(key => {
+      if (props.hasOwnProperty(key)) {
+        delete props[key];
+      }
+    });
+    return <Dialog {...props} visible={visible} onAnimateLeave={this.removeContainer}  />;
   }
 
   removeContainer = () => {
@@ -39,7 +49,7 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
     }
   }
 
-  renderDialog() {
+  renderDialog(visible) {
     const prefixCls = this.props.prefixCls;
     let container = document.querySelector(`#${prefixCls}-container`);
     if (!container) {
@@ -49,7 +59,7 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
     }
     ReactDOM.unstable_renderSubtreeIntoContainer(
       this,
-      this.getComponent(),
+      this.getComponent(visible),
       container,
     );
   }

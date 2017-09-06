@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 import expect from 'expect.js';
 import Dialog from '../index';
-import '../assets/bootstrap.less';
+// import '../assets/bootstrap.less';
 import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -63,7 +63,7 @@ describe('dialog', () => {
       visible: true,
     });
     setTimeout(() => {
-      expect($('.rc-dialog-wrap').css('display'))
+      expect($('.rmc-dialog-wrap').css('display'))
         .to.be('block');
       done();
     }, 10);
@@ -77,20 +77,16 @@ describe('dialog', () => {
       visible: false,
     });
     setTimeout(() => {
-      expect($('.rc-dialog-wrap').length).to.be(0);
+      expect($('.rmc-dialog-wrap').length).to.be(0);
       done();
     }, 10);
-  });
-
-  it('create', () => {
-    expect($('.rc-dialog').length).to.be(0);
   });
 
   it('mask', () => {
     dialog.setState({
       visible: true,
     });
-    expect($('.rc-dialog-mask').length).to.be(1);
+    expect($('.rmc-dialog-mask').length).to.be(1);
   });
 
   it('click close', (finish) => {
@@ -100,12 +96,12 @@ describe('dialog', () => {
       });
       setTimeout(done, 10);
     }, (done) => {
-      const btn = $('.rc-dialog-close')[0];
+      const btn = $('.rmc-dialog-close')[0];
       Simulate.click(btn);
       setTimeout(done, 10);
     }, (done) => {
       expect(callback1).to.be(1);
-      expect($('.rc-dialog-wrap').length).to.be(0);
+      expect($('.rmc-dialog-wrap').length).to.be(0);
       done();
     }], finish);
   });
@@ -117,13 +113,13 @@ describe('dialog', () => {
       });
       setTimeout(done, 500);
     }, (done) => {
-      const mask = $('.rc-dialog-wrap')[0];
+      const mask = $('.rmc-dialog-wrap')[0];
       Simulate.click(mask);
       setTimeout(done, 10);
     }, (done) => {
       // dialog should closed after mask click
       expect(callback1).to.be(1);
-      expect($('.rc-dialog-wrap').length).to.be(0);
+      expect($('.rmc-dialog-wrap').length).to.be(0);
       done();
     }, (done) => {
       dialog.setState({
@@ -135,7 +131,7 @@ describe('dialog', () => {
     }, (done) => {
       // dialog should stay on visible after mask click if set maskClosable to false
       // expect(callback1).to.be(0);
-      expect($('.rc-dialog-wrap').css('display'))
+      expect($('.rmc-dialog-wrap').css('display'))
         .to.be('block');
       done();
     }], finish);
