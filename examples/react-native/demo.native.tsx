@@ -5,7 +5,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import Dialog from '../../src/Dialog.native';
+import Dialog from '../../src/Modal';
 
 const styles = StyleSheet.create({
   button: {
