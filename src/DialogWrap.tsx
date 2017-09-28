@@ -57,11 +57,7 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
       container.setAttribute('id', `${prefixCls}-container`);
       document.body.appendChild(container);
     }
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this,
-      this.getComponent(visible),
-      container,
-    );
+    ReactDOM.render(this.getComponent(visible), container);
   }
 
   render() {
