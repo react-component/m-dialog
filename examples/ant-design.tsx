@@ -11,6 +11,9 @@ class MyControl extends React.Component<any, any> {
     visible: false,
     center: false,
   };
+
+  dialog: Dialog;
+
   onClick = () => {
     this.setState({
       visible: true,
@@ -27,6 +30,11 @@ class MyControl extends React.Component<any, any> {
       center: e.target.checked,
     });
   }
+
+  componentDidMount() {
+    this.dialog.componentWillUnmount();
+  }
+
   render() {
     let dialog;
     let wrapClassName = '';
@@ -35,6 +43,7 @@ class MyControl extends React.Component<any, any> {
     }
     dialog = (
       <Dialog
+        ref={(dom: any) => this.dialog = dom}
         visible={this.state.visible}
         wrapClassName={wrapClassName}
         animation="zoom"
