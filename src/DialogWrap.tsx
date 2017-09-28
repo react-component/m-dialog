@@ -13,18 +13,24 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
     onClose: noop,
   };
 
+  preVisible = false;
+
   componentDidMount() {
     if (this.props.visible) {
       this.componentDidUpdate();
+      this.preVisible = this.props.visible;
     }
   }
 
   shouldComponentUpdate({ visible }) {
+    this.preVisible = !!this.props.visible;
     return !!(this.props.visible || visible);
   }
 
   componentWillUnmount() {
-    this.renderDialog(false);
+    if (this.preVisible) {
+      this.renderDialog(false);
+    }
   }
 
   componentDidUpdate() {
