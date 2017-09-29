@@ -14,8 +14,11 @@ class MyControl extends React.Component<any, any> {
     center: false,
   };
 
+  dialog: Dialog;
+
   componentDidMount() {
     console.log(this.modalInput);
+    this.dialog.componentWillUnmount();
   }
 
   onClick = () => {
@@ -42,13 +45,14 @@ class MyControl extends React.Component<any, any> {
     }
     dialog = (
       <Dialog
+        ref={(dom: any) => this.dialog = dom}
         visible={this.state.visible}
         wrapClassName={wrapClassName}
         animation="zoom"
         maskAnimation="fade"
         onClose={this.onClose}
       >
-        <input ref={el => this.modalInput = el} />
+      <input ref={el => this.modalInput = el} />
         <p>basic modal</p>
         <div style={{ height: 200 }}></div>
       </Dialog>
@@ -73,7 +77,6 @@ class MyControl extends React.Component<any, any> {
           >
             show dialog
           </button>
-
           &nbsp;
           <label>center
             <input
