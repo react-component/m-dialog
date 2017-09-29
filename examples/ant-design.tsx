@@ -7,10 +7,17 @@ import ReactDOM from 'react-dom';
 import Dialog from '../src/DialogWrap';
 
 class MyControl extends React.Component<any, any> {
+  modalInput: any;
+
   state = {
     visible: false,
     center: false,
   };
+
+  componentDidMount() {
+    console.log(this.modalInput);
+  }
+
   onClick = () => {
     this.setState({
       visible: true,
@@ -41,7 +48,7 @@ class MyControl extends React.Component<any, any> {
         maskAnimation="fade"
         onClose={this.onClose}
       >
-        <input />
+        <input ref={el => this.modalInput = el} />
         <p>basic modal</p>
         <div style={{ height: 200 }}></div>
       </Dialog>
