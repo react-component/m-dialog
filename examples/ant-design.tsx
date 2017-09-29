@@ -3,7 +3,7 @@
 import 'rmc-dialog/assets/index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// use import Dialog from 'rc-dialog'
+// use import Dialog from 'rmc-dialog'
 import Dialog from '../src/DialogWrap';
 
 class MyControl extends React.Component<any, any> {
