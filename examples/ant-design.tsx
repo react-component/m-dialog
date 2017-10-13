@@ -17,7 +17,6 @@ class MyControl extends React.Component<any, any> {
   dialog: Dialog;
 
   componentDidMount() {
-    console.log(this.modalInput);
     this.dialog.componentWillUnmount();
   }
 
@@ -43,6 +42,9 @@ class MyControl extends React.Component<any, any> {
     if (this.state.center) {
       wrapClassName = 'center';
     }
+    // if (!this.state.visible) {
+      // dialog = null;
+    // } else {
     dialog = (
       <Dialog
         ref={(dom: any) => this.dialog = dom}
@@ -52,11 +54,12 @@ class MyControl extends React.Component<any, any> {
         maskAnimation="fade"
         onClose={this.onClose}
       >
-      <input ref={el => this.modalInput = el} />
+        <input ref={el => this.modalInput = el} />
         <p>basic modal</p>
         <div style={{ height: 200 }}></div>
       </Dialog>
     );
+    // }
     return (
       <div style={{ width: '90%', margin: '0 auto' }}>
         <style>

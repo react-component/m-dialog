@@ -29,7 +29,12 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
 
   componentWillUnmount() {
     if (this.props.visible) {
-      this.renderDialog(false);
+      if (!IS_REACT_16) {
+        this.renderDialog(false);
+      } else {
+        // TODO for react@16 createPortal animation
+        this.removeContainer();
+      }
     } else {
       this.removeContainer();
     }
