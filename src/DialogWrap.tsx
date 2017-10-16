@@ -70,7 +70,9 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
       if (!IS_REACT_16) {
         ReactDOM.unmountComponentAtNode(container);
       }
-      (container as any).parentNode.removeChild(container);
+      if ((container as any).children.length === 1) {
+        (container as any).parentNode.removeChild(container);
+      }
     }
   }
 
