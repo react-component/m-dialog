@@ -24,6 +24,14 @@ export default class Dialog extends React.Component<IDialogPropTypes, any> {
   footerRef: any;
   wrapRef: any;
 
+  componentWillUnmount() {
+    // fix: react@16 no dismissing animation
+    document.body.style.overflow = '';
+    if (this.wrapRef) {
+      this.wrapRef.style.display = 'none';
+    }
+  }
+
   getZIndexStyle() {
     const style: any = {};
     const props = this.props;
