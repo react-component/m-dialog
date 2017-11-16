@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>ant-design.js - example - rmc-dialog@0.0.1-alpha.4</title>
+  <title>ant-design.js - example - rmc-dialog@1.0.6</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,7 +263,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>rmc-dialog@0.0.1-alpha.4</h1>
+      <h1>rmc-dialog@1.0.6</h1>
 
       <p>mobile dialog ui component for react</p>
     </div>
@@ -274,14 +274,24 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <span class="hljs-keyword">import</span> <span class="hljs-string">'rmc-dialog/assets/index.css'</span>;
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
-<span class="hljs-comment">// use import Dialog from 'rc-dialog'</span>
+<span class="hljs-comment">// use import Dialog from 'rmc-dialog'</span>
 <span class="hljs-keyword">import</span> Dialog <span class="hljs-keyword">from</span> <span class="hljs-string">'../src/DialogWrap'</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyControl</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span>&lt;<span class="hljs-title">any</span>, <span class="hljs-title">any</span>&gt; </span>{
+  modalInput: any;
+
   state = {
     visible: <span class="hljs-literal">false</span>,
+    visible2: <span class="hljs-literal">false</span>,
     center: <span class="hljs-literal">false</span>,
   };
+
+  dialog: Dialog;
+
+  componentDidMount() {
+    <span class="hljs-keyword">this</span>.dialog.componentWillUnmount();
+  }
+
   onClick = () =&gt; {
     <span class="hljs-keyword">this</span>.setState({
       visible: <span class="hljs-literal">true</span>,
@@ -298,25 +308,51 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
       center: e.target.checked,
     });
   }
+  showDialog2 = () =&gt; {
+    <span class="hljs-keyword">this</span>.setState({
+      visible2: <span class="hljs-literal">true</span>,
+    });
+  }
   render() {
     <span class="hljs-keyword">let</span> dialog;
     <span class="hljs-keyword">let</span> wrapClassName = <span class="hljs-string">''</span>;
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.state.center) {
       wrapClassName = <span class="hljs-string">'center'</span>;
     }
+    <span class="hljs-comment">// if (!this.state.visible) {</span>
+      <span class="hljs-comment">// dialog = null;</span>
+    <span class="hljs-comment">// } else {</span>
     dialog = (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Dialog</span>
-        <span class="hljs-attribute">visible</span>=<span class="hljs-value">{this.state.visible}</span>
-        <span class="hljs-attribute">wrapClassName</span>=<span class="hljs-value">{wrapClassName}</span>
+        <span class="hljs-attribute">ref</span>=<span class="hljs-value">{(dom:</span> <span class="hljs-attribute">any</span>) =&gt;</span> this.dialog = dom}
+        visible={this.state.visible}
+        wrapClassName={wrapClassName}
+        animation="zoom"
+        maskAnimation="fade"
+        onClose={this.onClose}
+      &gt;
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ref</span>=<span class="hljs-value">{el</span> =&gt;</span> this.modalInput = el} /&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.showDialog2}</span>&gt;</span>click to show dialog2<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">height:</span> <span class="hljs-attribute">200</span> }}&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">Dialog</span>&gt;</span>
+    )</span>;
+    <span class="hljs-keyword">const</span> dialog2 = (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Dialog</span>
+        <span class="hljs-attribute">visible</span>=<span class="hljs-value">{this.state.visible2}</span>
         <span class="hljs-attribute">animation</span>=<span class="hljs-value">"zoom"</span>
         <span class="hljs-attribute">maskAnimation</span>=<span class="hljs-value">"fade"</span>
-        <span class="hljs-attribute">onClose</span>=<span class="hljs-value">{this.onClose}</span>
-      &gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> /&gt;</span>
+        <span class="hljs-attribute">onClose</span>=<span class="hljs-value">{()</span> =&gt;</span> {
+          this.setState({
+            visible2: false,
+          });
+        }}
+      &gt;
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">ref</span>=<span class="hljs-value">{el</span> =&gt;</span> this.modalInput = el} /&gt;
         <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>basic modal<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">height:</span> <span class="hljs-attribute">200</span> }}&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">Dialog</span>&gt;</span>
     )</span>;
+    <span class="hljs-comment">// }</span>
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">width:</span> '<span class="hljs-attribute">90</span>%', <span class="hljs-attribute">margin:</span> '<span class="hljs-attribute">0</span> <span class="hljs-attribute">auto</span>' }}&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
@@ -337,7 +373,6 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
           &gt;</span>
             show dialog
           <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-
           &amp;nbsp;
           <span class="hljs-tag">&lt;<span class="hljs-title">label</span>&gt;</span>center
             <span class="hljs-tag">&lt;<span class="hljs-title">input</span>
@@ -348,6 +383,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
           <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
         {dialog}
+        {dialog2}
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     )</span>;
   }
