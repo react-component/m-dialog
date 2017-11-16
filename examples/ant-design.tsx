@@ -11,6 +11,7 @@ class MyControl extends React.Component<any, any> {
 
   state = {
     visible: false,
+    visible2: false,
     center: false,
   };
 
@@ -36,6 +37,11 @@ class MyControl extends React.Component<any, any> {
       center: e.target.checked,
     });
   }
+  showDialog2 = () => {
+    this.setState({
+      visible2: true,
+    });
+  }
   render() {
     let dialog;
     let wrapClassName = '';
@@ -53,6 +59,22 @@ class MyControl extends React.Component<any, any> {
         animation="zoom"
         maskAnimation="fade"
         onClose={this.onClose}
+      >
+        <input ref={el => this.modalInput = el} />
+        <p onClick={this.showDialog2}>click to show dialog2</p>
+        <div style={{ height: 200 }}></div>
+      </Dialog>
+    );
+    const dialog2 = (
+      <Dialog
+        visible={this.state.visible2}
+        animation="zoom"
+        maskAnimation="fade"
+        onClose={() => {
+          this.setState({
+            visible2: false,
+          });
+        }}
       >
         <input ref={el => this.modalInput = el} />
         <p>basic modal</p>
@@ -90,6 +112,7 @@ class MyControl extends React.Component<any, any> {
           </label>
         </p>
         {dialog}
+        {dialog2}
       </div>
     );
   }

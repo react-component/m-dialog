@@ -16,6 +16,7 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
   };
 
   _component: any;
+  container: any;
 
   componentDidMount() {
     if (this.props.visible) {
@@ -65,24 +66,24 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
   }
 
   removeContainer = () => {
-    const container = document.querySelector(`#${this.props.prefixCls}-container`);
-    if (container) {
+    if (this.container) {
       if (!IS_REACT_16) {
-        ReactDOM.unmountComponentAtNode(container);
+        ReactDOM.unmountComponentAtNode(this.container);
       }
-      (container as any).parentNode.removeChild(container);
+      (this.container as any).parentNode.removeChild(this.container);
+      this.container = null;
     }
   }
 
   getContainer = () => {
-    const prefixCls = this.props.prefixCls;
-    let container = document.querySelector(`#${prefixCls}-container`);
-    if (!container) {
-      container = document.createElement('div');
-      container.setAttribute('id', `${prefixCls}-container`);
+    if (!this.container) {
+      const container = document.createElement('div');
+      const containerId = `${this.props.prefixCls}-container-${(new Date().getTime())}`;
+      container.setAttribute('id', containerId);
       document.body.appendChild(container);
+      this.container = container;
     }
-    return container;
+    return this.container;
   }
 
   renderDialog(visible) {
