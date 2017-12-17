@@ -180,10 +180,12 @@ export default class Dialog extends React.Component<IDialogPropTypes, any> {
 
   onAnimateAppear = () => {
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
   }
 
   onAnimateLeave = () => {
     document.body.style.overflow = '';
+    document.body.style.position = '';
     if (this.wrapRef) {
       this.wrapRef.style.display = 'none';
     }
