@@ -136,4 +136,12 @@ describe('dialog', () => {
       done();
     }], finish);
   });
+
+  it('render footer padding correctly', () => {
+    async.series([() => {
+      ReactDOM.render(<DialogWrap footer={''} />, container)
+    }, () => {
+      expect($('.rmc-dialog-footer').css('padding')).to.be('10px 20px');
+    }]);
+  });
 });
