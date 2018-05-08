@@ -83,6 +83,7 @@ export default class Dialog extends React.Component<IDialogPropTypes, any> {
           className={`${props.prefixCls}-mask`}
           hiddenClassName={`${props.prefixCls}-mask-hidden`}
           visible={props.visible}
+          {...props.maskProps}
         />
       );
       if (maskTransition) {

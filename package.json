@@ -1,6 +1,6 @@
 {
   "name": "rmc-dialog",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "mobile dialog ui component for react",
   "keywords": [
     "react",
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "http://github.com/react-component/m-dialog/issues"
   },
-  "licenses": "MIT",
+  "license": "MIT",
   "files": [
     "lib",
     "es",

@@ -23,6 +23,7 @@ interface IDialogPropTypes {
   wrapClassName?: string;
   onAnimateLeave?: () => void;
   zIndex?: number;
+  maskProps?: any;
   wrapProps?: any;
 }
 
