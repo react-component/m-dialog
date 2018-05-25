@@ -48,196 +48,41 @@ ReactDOM.render(
 
 ### rmc-dialog(web)
 
-
-<table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-        <th style="width: 100px;">name</th>
-        <th style="width: 50px;">type</th>
-        <th>default</th>
-        <th>description</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr>
-          <td>prefixCls</td>
-          <td>String</td>
-          <td>rmc-dialog</td>
-          <td>The dialog dom node's prefixCls</td>
-      </tr>
-      <tr>
-          <td>className</td>
-          <td>String</td>
-          <td></td>
-          <td>additional className for dialog</td>
-      </tr>
-      <tr>
-          <td>wrapClassName</td>
-          <td>String</td>
-          <td></td>
-          <td>additional className for dialog wrap</td>
-      </tr>
-      <tr>
-          <td>style</td>
-          <td>Object</td>
-          <td>{}</td>
-          <td>Root style for dialog element.Such as width, height</td>
-      </tr>
-      <tr>
-          <td>zIndex</td>
-          <td>Number</td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>bodyStyle</td>
-          <td>Object</td>
-          <td>{}</td>
-          <td>body style for dialog body element.Such as height</td>
-      </tr>
-      <tr>
-          <td>maskStyle</td>
-          <td>Object</td>
-          <td>{}</td>
-          <td>style for mask element.</td>
-      </tr>
-      <tr>
-          <td>visible</td>
-          <td>Boolean</td>
-          <td>false</td>
-          <td>current dialog's visible status</td>
-      </tr>
-      <tr>
-          <td>animation</td>
-          <td>String</td>
-          <td></td>
-          <td>part of dialog animation css class name</td>
-      </tr>
-      <tr>
-          <td>maskAnimation</td>
-          <td>String</td>
-          <td></td>
-          <td>part of dialog's mask animation css class name</td>
-      </tr>
-      <tr>
-          <td>transitionName</td>
-          <td>String</td>
-          <td></td>
-          <td>dialog animation css class name</td>
-      </tr>
-      <tr>
-          <td>maskTransitionName</td>
-          <td>String</td>
-          <td></td>
-          <td>mask animation css class name</td>
-      </tr>
-      <tr>
-          <td>title</td>
-          <td>String|React.Element</td>
-          <td></td>
-          <td>Title of the dialog</td>
-      </tr>
-      <tr>
-          <td>footer</td>
-          <td>React.Element</td>
-          <td></td>
-          <td>footer of the dialog</td>
-      </tr>
-      <tr>
-          <td>closable</td>
-          <td>Boolean</td>
-          <td>true</td>
-          <td>whether show close button</td>
-      </tr>
-      <tr>
-          <td>mask</td>
-          <td>Boolean</td>
-          <td>true</td>
-          <td>whether show mask</td>
-      </tr>
-      <tr>
-          <td>maskClosable</td>
-          <td>Boolean</td>
-          <td>true</td>
-          <td>whether click mask to close</td>
-      </tr>
-      <tr>
-          <td>onClose</td>
-          <td>function()</td>
-          <td></td>
-          <td>called when click close button or mask</td>
-      </tr>
-    </tbody>
-</table>
+| name     | description    | type     | default      |
+|----------|----------------|----------|--------------|
+| prefixCls | The dialog dom node's prefixCls | String | `rmc-dialog` |
+| className | additional className for dialog | String |  |
+| wrapClassName | additional className for dialog wrap | String |  |
+| style | Root style for dialog element.Such as width, height | Object | {} |
+| zIndex | z-index | Number |  |
+| bodyStyle | body style for dialog body element.Such as height | Object | {} |
+| maskStyle | style for mask element. | Object | {} |
+| visible | current dialog's visible status | Boolean | false |
+| animation | part of dialog animation css class name | String |  |
+| maskAnimation | part of dialog's mask animation css class name | String |  |
+| transitionName | dialog animation css class name | String |  |
+| maskTransitionName | mask animation css class name | String |  |
+| title | Title of the dialog | String|React.Element |  |
+| footer | footer of the dialog | React.Element |  |
+| closable | whether show close button | Boolean | true |
+| mask | whether show mask | Boolean | true |
+| maskClosable | whether click mask to close | Boolean | true |
+| onClose | called when click close button or mask | function |  |
 
 ### rmc-dialog/lib/Dialog (react-native)
 
-<table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-        <th style="width: 100px;">name</th>
-        <th style="width: 50px;">type</th>
-        <th>default</th>
-        <th>description</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr>
-          <td>wrapStyle</td>
-          <td></td>
-          <td>{}</td>
-          <td>style for modal wrap</td>
-      </tr>
-      <tr>
-          <td>maskStyle</td>
-          <td></td>
-          <td>{}</td>
-          <td>style for modal mask</td>
-      </tr>
-      <tr>
-          <td>style</td>
-          <td></td>
-          <td>{}</td>
-          <td>style for modal</td>
-      </tr>
-      <tr>
-          <td>animationType</td>
-          <td>none|fade|slide-up|slide-down</td>
-          <td>slide-up</td>
-          <td>animation type for modal content</td>
-      </tr>
-      <tr>
-          <td>animationDuration</td>
-          <td>number</td>
-          <td>300(ms)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>visible</td>
-          <td>boolean</td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>animateAppear</td>
-          <td>false</td>
-          <td></td>
-          <td>whether animation on first show</td>
-      </tr>
-      <tr>
-          <td>onClose</td>
-          <td>()=>void</td>
-          <td></td>
-          <td>called when close</td>
-      </tr>
-      <tr>
-          <td>onAnimationEnd</td>
-          <td>(visible:boolean)=>void (animationType !== 'none')</td>
-          <td></td>
-          <td>called when animation end</td>
-      </tr>
-    </tbody>
-</table>
+| name     | description    | type     | default      |
+|----------|----------------|----------|--------------|
+| wrapStyle | style for modal wrap | Object | {} |
+| maskStyle | style for modal mask | Object | {} |
+| style | style for modal | Object | {} |
+| animationType | animation type for modal content, can be one of `none|fade|slide-up|slide-down` | String | slide-up |
+| animationDuration | animation duration | number | 300 |
+| visible | visible state | boolean | false |
+| animateAppear | whether animation on first show | boolean | false |
+| onClose | called when close | Function | ()=>void |
+| onAnimationEnd | called when animation end | Function | (visible:boolean)=>void (animationType !== 'none') |
+
 
 ## Development
 
@@ -255,7 +100,8 @@ online example: http://react-component.github.io/m-dialog/
 ## react-native
 
 ```
-./node_modules/rc-tools run react-native-init
+npm run rn-init
+npm run watch-tsc
 react-native start
 react-native run-ios
 ```
