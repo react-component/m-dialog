@@ -1713,7 +1713,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /* 13 */
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.6' };
+var core = module.exports = { version: '2.5.7' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -11325,6 +11325,7 @@ Dialog.defaultProps = {
 
 function noop() {}
 var IS_REACT_16 = !!__WEBPACK_IMPORTED_MODULE_6_react_dom___default.a.createPortal;
+var CAN_USE_DOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 var DialogWrap = function (_React$Component) {
     __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(DialogWrap, _React$Component);
@@ -11413,6 +11414,9 @@ var DialogWrap = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            if (!CAN_USE_DOM) {
+                return null;
+            }
             var visible = this.props.visible;
 
             if (IS_REACT_16 && (visible || this._component)) {
