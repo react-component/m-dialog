@@ -8,6 +8,12 @@ function noop() {
 
 const IS_REACT_16 = !!(ReactDOM as any).createPortal;
 
+const CAN_USE_DOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+
 export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
   static defaultProps = {
     visible: false,
@@ -95,6 +101,10 @@ export default class DialogWrap extends React.Component<IDialogPropTypes, any> {
   }
 
   render() {
+    if (!CAN_USE_DOM) {
+      return null;
+    }
+
     const { visible } = this.props;
     if (IS_REACT_16 && (visible || this._component)) {
       return (ReactDOM as any).createPortal(this.getComponent(visible), this.getContainer());
