@@ -1,8 +1,8 @@
 /* tslint:disable:no-console */
 
 import 'rmc-dialog/assets/index.less';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 // use import Dialog from 'rmc-dialog'
 import Dialog from '../src/DialogWrap';
 

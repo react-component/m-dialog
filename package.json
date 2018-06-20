@@ -51,10 +51,11 @@
   },
   "devDependencies": {
     "@types/mocha": "^2.2.32",
-    "@types/react": "~16.0.2",
-    "@types/react-dom": "15.5.1",
-    "@types/react-native": "^0.47.2",
+    "@types/react": "^16.0.0",
+    "@types/react-dom": "^16.0.0",
+    "@types/react-native": "^0.55.12",
     "async": "^0.9.0",
+    "babel-runtime": "6.x",
     "bluebird": "~2.9.30",
     "bootstrap": "^3.3.6",
     "expect.js": "~0.3.1",
@@ -72,7 +73,6 @@
   ],
   "typings": "./lib/DialogWrap.d.ts",
   "dependencies": {
-    "babel-runtime": "6.x",
     "rc-animate": "2.x"
   }
 }
