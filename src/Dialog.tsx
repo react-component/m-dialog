@@ -6,6 +6,10 @@ import IDialogPropTypes from './IDialogPropTypes';
 function noop() {
 }
 
+function move(e) {
+  e.preventDefault();
+}
+
 export default class Dialog extends React.Component<IDialogPropTypes, any> {
   static defaultProps = {
     afterClose: noop,
@@ -24,11 +28,18 @@ export default class Dialog extends React.Component<IDialogPropTypes, any> {
   footerRef: any;
   wrapRef: any;
 
+  componentDidMount() {
+    if (this.wrapRef) {
+      this.wrapRef.addEventListener('touchmove', move, false);
+    }
+  }
+
   componentWillUnmount() {
     // fix: react@16 no dismissing animation
     document.body.style.overflow = '';
     if (this.wrapRef) {
       this.wrapRef.style.display = 'none';
+      this.wrapRef.removeEventListener('touchmove', move, false);
     }
   }
 
