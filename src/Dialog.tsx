@@ -6,8 +6,38 @@ import IDialogPropTypes from './IDialogPropTypes';
 function noop() {
 }
 
-function move(e) {
-  e.preventDefault();
+// 缓存body原有的样式属性
+let originPosition;
+let originWidth;
+let originTop;
+// body是否已设置成fixed组织滚动
+let fixed = false;
+// dialog实例计数
+let count = 0;
+
+function fixedBody() {
+  if (!fixed) { // 避免重复设置造成Body原属性获取失败
+    const { position, width, top } = document.body.style;
+    originPosition = position;
+    originWidth = width;
+    originTop = top;
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollTop}px`;
+    fixed = true;
+  }
+}
+
+function looseBody() {
+  if (!count) { // 如果当前页面还存在Dialog实例，则不能重置
+    const body = document.body;
+    body.style.position = originPosition;
+    body.style.width = originWidth;
+    window.scrollTo(0, -parseInt(body.style.top || '0', 10));
+    body.style.top = originTop;
+    fixed = false;
+  }
 }
 
 export default class Dialog extends React.Component<IDialogPropTypes, any> {
@@ -28,18 +58,18 @@ export default class Dialog extends React.Component<IDialogPropTypes, any> {
   footerRef: any;
   wrapRef: any;
 
-  componentDidMount() {
-    if (this.wrapRef) {
-      this.wrapRef.addEventListener('touchmove', move, false);
-    }
+  constructor(props) {
+    super(props);
+    count++;
   }
 
   componentWillUnmount() {
+    count--;
+    looseBody();
     // fix: react@16 no dismissing animation
     document.body.style.overflow = '';
     if (this.wrapRef) {
       this.wrapRef.style.display = 'none';
-      this.wrapRef.removeEventListener('touchmove', move, false);
     }
   }
 
@@ -224,6 +254,7 @@ export default class Dialog extends React.Component<IDialogPropTypes, any> {
     const { prefixCls, maskClosable } = props;
     const style = this.getWrapStyle();
     if (props.visible) {
+      fixedBody();
       style.display = null;
     }
     return (
