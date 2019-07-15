@@ -54,7 +54,7 @@
     "@types/react": "~16.0.2",
     "@types/react-dom": "15.5.1",
     "@types/react-native": "^0.47.2",
-    "async": "^0.9.0",
+    "async": "^2.6.3",
     "bluebird": "~2.9.30",
     "bootstrap": "^3.3.6",
     "expect.js": "~0.3.1",
