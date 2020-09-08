@@ -26,10 +26,12 @@ export default class Dialog extends React.Component<IDialogPropTypes, any> {
 
   componentWillUnmount() {
     // fix: react@16 no dismissing animation
-    document.body.style.overflow = '';
-    if (this.wrapRef) {
-      this.wrapRef.style.display = 'none';
-    }
+    setTimeout(() => {
+      document.body.style.overflow = '';
+      if (this.wrapRef) {
+        this.wrapRef.style.display = 'none';
+      }
+    }, 0);
   }
 
   getZIndexStyle() {
