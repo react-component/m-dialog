@@ -56,7 +56,7 @@
     "@types/react-native": "^0.47.2",
     "async": "^0.9.0",
     "bluebird": "~2.9.30",
-    "bootstrap": "^3.3.6",
+    "bootstrap": "^5.0.2",
     "expect.js": "~0.3.1",
     "jquery": "^1.11.2",
     "pre-commit": "1.x",
